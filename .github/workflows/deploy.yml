@@ -40,7 +40,8 @@ jobs:
 
       - name: Sync code to VPS
         run: |
-          rsync -az --delete \
+          rsync -rltz --delete \
+            --omit-dir-times \
             --exclude='.git' \
             --exclude='node_modules' \
             ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/frontefolio/
