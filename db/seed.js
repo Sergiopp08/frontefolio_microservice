@@ -18,6 +18,13 @@ function getConnection() {
 async function seed() {
   const conn = await getConnection();
 
+  const [rows] = await conn.execute('SELECT COUNT(*) AS count FROM users');
+  if (rows[0].count > 0) {
+    console.log('  La base de datos no está vacía. Saltando seed.');
+    await conn.end();
+    return;
+  }
+
   // ── Categorías ───────────────────────────────────────────────
   await conn.execute(`
     INSERT IGNORE INTO categories (id, name, description) VALUES

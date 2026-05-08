@@ -28,6 +28,16 @@ async function migrate() {
     multipleStatements: true,
   });
 
+  const [tables] = await conn.execute(
+    'SELECT COUNT(*) AS count FROM information_schema.tables WHERE table_schema = ?',
+    [dbName]
+  );
+  if (tables[0].count > 0) {
+    console.log('  La base de datos no está vacía. Saltando migraciones.');
+    await conn.end();
+    return;
+  }
+
   await conn.execute(`
     CREATE TABLE IF NOT EXISTS schema_migrations (
       id         INT AUTO_INCREMENT PRIMARY KEY,

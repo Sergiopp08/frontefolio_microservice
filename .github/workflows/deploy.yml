@@ -114,6 +114,6 @@ jobs:
           command_timeout: 10m
           script: |
             cd /opt/frontefolio
-            docker compose build --no-cache
-            docker compose up -d --remove-orphans
-            docker image prune -f
+            sg docker -c "docker compose build --no-cache"
+            sg docker -c "docker compose up -d --remove-orphans"
+            sg docker -c "docker image prune -f"
