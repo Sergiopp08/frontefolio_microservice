@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', require('./routes/auth'));
 
-app.get('/health', (req, res) => res.json({ status: 'ok', service: 'auth-service', timestamp: new Date().toISOString() }));
+app.get('/health', (req, res) => res.json({ status: 'ok', service: 'auth-service', mensaje: 'hola', timestamp: new Date().toISOString() }));
 app.use((req, res) => res.status(404).json({ error: `Ruta no encontrada: ${req.method} ${req.path}` }));
 app.use(errorHandler);
 

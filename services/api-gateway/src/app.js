@@ -48,6 +48,7 @@ function gatewayInfo() {
   return {
     status:    'ok',
     service:   'api-gateway',
+    mensaje:   'hola',
     timestamp: new Date().toISOString(),
     uptime:    Math.floor(process.uptime()),
     memory: {

@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/offers', require('./routes/offers'));
 
-app.get('/health', (req, res) => res.json({ status: 'ok', service: 'order-service', timestamp: new Date().toISOString() }));
+app.get('/health', (req, res) => res.json({ status: 'ok', service: 'order-service', mensaje: 'hola', timestamp: new Date().toISOString() }));
 app.use((req, res) => res.status(404).json({ error: `Ruta no encontrada: ${req.method} ${req.path}` }));
 app.use(errorHandler);
 
