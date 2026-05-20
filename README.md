@@ -1,6 +1,6 @@
 # Frontefolio API — Arquitectura de Microservicios
 
-API REST para la plataforma Frontefolio — importación de productos de más de 50 países a España.
+API REST para la plataforma Frontefolio — importación de productos de más de 50 países a España. Puerba 2
 
 ## Arquitectura
 
@@ -43,11 +43,7 @@ Cliente / Frontends
    - Si es válido: inyecta `X-User-Id` y `X-User-Role` en los headers y reenvía la petición al servicio correspondiente.
    - Si es inválido: devuelve `401` sin llegar al servicio.
    - Si no hay token: reenvía sin headers de usuario (rutas públicas funcionan normalmente).
-3. Cada servicio lee `X-User-Id` / `X-User-Role` para identificar al usuario. Nunca verifica JWT directamente.
 
-> Los headers `X-User-Id` y `X-User-Role` que pudiera enviar el cliente son eliminados por el gateway antes de reenviar, evitando suplantación.
-
-## Base de datos
 
 Todos los servicios comparten una única base de datos MySQL (`frontefolio`). Esta es la decisión pragmática para una PoC; en producción cada servicio tendría su propia BD.
 
